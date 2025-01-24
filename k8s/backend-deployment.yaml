@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+  namespace: my-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+      - name: backend
+        image: sanjayraj/backend-kb:latest
+        ports:
+          - containerPort: 5000
+        envFrom:
+          - configMapRef:
+              name: db-config  # Reference to the ConfigMap instead of the Secret
+        volumeMounts:
+          - name: backend-storage
+            mountPath: /usr/src/app
+      volumes:
+        - name: backend-storage
+          persistentVolumeClaim:
+            claimName: app-pvc
