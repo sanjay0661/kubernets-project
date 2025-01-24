@@ -1,0 +1,8 @@
+resources:
+  - ../../base
+
+patchesStrategicMerge:
+  - replica_count.yaml
+
+commonLabels:
+  env: staging

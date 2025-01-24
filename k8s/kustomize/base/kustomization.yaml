@@ -1,0 +1,12 @@
+resources:
+  - backend-deployment.yaml
+  - frontend-deployment.yaml
+  - db-config.yaml
+  - namespace.yml
+  - backend-service.yaml
+  - frontend-service.yaml
+
+commonLabels:
+  app: my-app
+
+namePrefix: base-
